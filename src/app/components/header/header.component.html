@@ -1,12 +1,16 @@
 <div class="header">
     <div class="container">
         <a href="">
+<<<<<<< HEAD
             <img src="/assets/images/logo-full.png" alt="" class="logo">
+=======
+            <img src="assets/images/logo-full.png" alt="" class="logo">
+>>>>>>> 4033111e967855d317e50684f54dcb39298463c6
         </a>
         <div class="menu-container">
             <a href="">Về Mioto</a>
-            <a href="">Trở thành chủ xe</a>
-            <a href="">Chuyến của tôi</a>
+            <a href="">Trở thành chủ xe</a> @if (userResponse) {
+            <a href="">Chuyến của tôi</a> }
             <div class="vertical-line">
 
             </div>
@@ -20,6 +24,19 @@
                     <li><button class="dropdown-item" type="button">Something else here</button></li>
                 </ul>
             </div>
+            @if (userResponse) {
+            <a href="">Đăng ký</a>
+            <a href="" class="btn-signin">Đăng nhập</a> } @else {
+            <div class="dropdown-profile">
+                <a href="" class="dropdown-profile">
+                    <div class="avatar ">
+                        <img src="https://variety.com/wp-content/uploads/2021/04/Avatar.jpg?w=800&h=533&crop=1" alt="">
+                    </div>
+                    <span>"My Name"</span>
+                    <fa-icon [icon]="faChevronDown"></fa-icon>
+                </a>
+            </div>
+            }
         </div>
     </div>
 </div>

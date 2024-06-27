@@ -6,6 +6,10 @@
     border-bottom: 1px solid #e0e0e0;
 }
 
+.logo {
+    width: 150px;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -51,7 +55,38 @@
     box-shadow: 0 20px 24px -4px rgba(0, 0, 0, .08), 0 8px 24px 12px rgba(0, 0, 0, .08);
     cursor: auto;
 }
+<<<<<<< HEAD
 .logo {
     max-width: 100px; /* Điều chỉnh kích thước logo */
     height: auto;
+=======
+
+.btn-signin {
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+.dropdown-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.avatar {
+    border: 1px solid #e0e0e0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+>>>>>>> 4033111e967855d317e50684f54dcb39298463c6
 }
