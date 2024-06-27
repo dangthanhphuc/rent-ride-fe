@@ -1,0 +1,64 @@
+
+.logo1 {
+
+   width: 290px;
+   height: 58px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.container {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 20px 0;
+  
+}
+
+footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    
+}
+
+.footer-content1 {
+    display: flex;
+    justify-content: space-between;
+    padding:12px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    padding-top:48px;
+}
+
+.row {
+    flex: 1;
+    padding: 0 20px;
+    
+}
+
+.row-3 {
+    display: flex;
+    align-items: center;
+}
+
+
+.contact-info p, .row p {
+    margin: 5px 0;
+}
+
+.main {
+    font-weight: bold;
+}
+
+.footer-contact{
+    display: flex;
+    justify-content: space-around;
+}
