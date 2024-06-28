@@ -1,3 +1,264 @@
 <app-header></app-header>
-<p>homepage works!</p>
+
+<div class="banner-section">
+    <div class="m-container">
+        <div class="background space">
+            <h1>RentRide - Cùng Bạn Trên Mọi Chuyến Đi</h1>
+            <div class="line-bg"></div>
+            <h6 class="text-white">
+                Trải nghiệm sự khác biệt từ
+                <span class="text-primary">hơn 8000</span> xe gia&nbsp;đình đời&nbsp;mới khắp Việt&nbsp;Nam
+            </h6>
+        </div>
+        <div class="search-option">
+            <div class="option">
+                @for (rentType of rentTypes; track $index) {
+                <div class="option-item" [ngClass]="{ active: selectedRentType === rentType }" (click)="onClickOption(rentType)">
+                    <!--  Thêm class active khi click -->
+                    <fa-icon [icon]="getOptionIcon(rentType)"></fa-icon>
+                    <p>Xe tự lái</p>
+                    <!--  Thêm text-white active khi click -->
+                </div>
+                }
+            </div>
+            <div class="search">
+                @if (selectedRentType === RentType.SELF_DRIVE) {
+                <div class="search-form">
+                    <div class="search-form__item address">
+                        <div class="title">
+                            <fa-icon [icon]="faLocationDot" style="margin-right: 16px"></fa-icon>
+                            <p>Địa điểm</p>
+                        </div>
+                        <div class="choose">
+                            Thời Gian thuê
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="search-form__item">
+                        <div class="title">
+                            <fa-icon [icon]="faCalendarDays" style="margin-right: 16px"></fa-icon>
+                            <p>Thời gian thuê</p>
+                        </div>
+                        <div class="choose">
+
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                            </div>
+
+                            <mat-form-field class="w-100">
+                                <mat-label>Chọn thời gian thuê</mat-label>
+                                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                    <input matStartDate formControlName="start" placeholder="Start date">
+                                    <input matEndDate formControlName="end" placeholder="End date">
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                                @if (range.controls.start.hasError('matStartDateInvalid')) {
+                                <mat-error>Invalid start date</mat-error>
+                                } @if (range.controls.end.hasError('matEndDateInvalid')) {
+                                <mat-error>Invalid end date</mat-error>
+                                }
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                    <a class="btn btn-color" (click)="onSearch()" style="align-self: center;">Tìm Xe</a>
+                </div>
+                } @else if (selectedRentType === RentType.WITH_DRIVER) {
+                <h6 class="title-wd">Lộ trình</h6>
+                <div class="wd-option-form">
+                    <div class="custom-radio">
+                        <input type="radio" id="city" name="trip_mode" checked (click)="onChangeRadio('city')" />
+                        <label for="city">Nội thành</label>
+                    </div>
+                    <div class="custom-radio">
+                        <input type="radio" id="province" name="trip_mode" (click)="onChangeRadio('province')" />
+                        <label for="province">Liên tỉnh</label>
+                    </div>
+                    <div class="custom-radio">
+                        <input type="radio" id="province_oneWay" name="trip_mode" (click)="onChangeRadio('province_oneWay')" />
+                        <label for="province_oneWay">Liên tỉnh (1 chiều)</label>
+                    </div>
+                </div>
+                @switch (tripMode()) { @case("city") {
+                <div class="note">
+                    Di chuyển nội thành hoặc lân cận, lộ trình tự do.
+                    <fa-icon [icon]="faCircleQuestion"></fa-icon>
+                </div>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title no-space">
+                            <fa-icon [icon]="faLocationDot"></fa-icon>
+                            <div>
+                                sdd
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="title-wd">Thời gian</h6>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title no-space">
+                            <fa-icon [icon]="faCalendarDays"></fa-icon>
+
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                            </div>
+
+                            <mat-form-field class="w-100">
+                                <mat-label>Chọn thời gian thuê</mat-label>
+                                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                    <input matStartDate formControlName="start" placeholder="Start date">
+                                    <input matEndDate formControlName="end" placeholder="End date">
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                                @if (range.controls.start.hasError('matStartDateInvalid')) {
+                                <mat-error>Invalid start date</mat-error>
+                                } @if (range.controls.end.hasError('matEndDateInvalid')) {
+                                <mat-error>Invalid end date</mat-error>
+                                }
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                    <a class="btn btn-color">Tìm Xe</a>
+                </div>
+                } @case ("province") {
+                <div class="note">
+                    Di chuyển liên tỉnh, trả khách về lại điểm đón.
+                    <fa-icon [icon]="faCircleQuestion"></fa-icon>
+                </div>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title">
+                            <div class="wrap-svg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 12.99C14.4853 12.99 16.5 10.9753 16.5 8.48999C16.5 6.00471 14.4853 3.98999 12 3.98999C9.51472 3.98999 7.5 6.00471 7.5 8.48999C7.5 10.9753 9.51472 12.99 12 12.99Z" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.4099 7.05005C13.0399 7.23005 13.4999 7.81005 13.4999 8.49005" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 13.3V20.0101" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                            <p>Điểm đón</p>
+                        </div>
+                        <div class="choose">
+                            <p>Điểm đón</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title">
+                            <div class="wrap-svg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 12.9902C14.4853 12.9902 16.5 10.9755 16.5 8.49023C16.5 6.00495 14.4853 3.99023 12 3.99023C9.51472 3.99023 7.5 6.00495 7.5 8.49023C7.5 10.9755 9.51472 12.9902 12 12.9902Z" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                            <p>Điểm đến</p>
+                        </div>
+                        <div class="choose">
+                            <p>Điểm đến</p>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="title-wd">Thời gian</h6>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title no-space">
+                            <fa-icon [icon]="faCalendarDays"></fa-icon>
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                            </div>
+
+                            <mat-form-field class="w-100">
+                                <mat-label>Chọn thời gian thuê</mat-label>
+                                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                    <input matStartDate formControlName="start" placeholder="Start date">
+                                    <input matEndDate formControlName="end" placeholder="End date">
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                                @if (range.controls.start.hasError('matStartDateInvalid')) {
+                                <mat-error>Invalid start date</mat-error>
+                                } @if (range.controls.end.hasError('matEndDateInvalid')) {
+                                <mat-error>Invalid end date</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <a class="btn btn-color">Tìm Xe</a>
+                </div>
+                } @case ("province_oneWay") {
+                <div class="note">
+                    Di chuyển liên tỉnh, trả khách tại điểm đến.
+                    <fa-icon [icon]="faCircleQuestion"></fa-icon>
+                </div>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title">
+                            <div class="wrap-svg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 12.99C14.4853 12.99 16.5 10.9753 16.5 8.48999C16.5 6.00471 14.4853 3.98999 12 3.98999C9.51472 3.98999 7.5 6.00471 7.5 8.48999C7.5 10.9753 9.51472 12.99 12 12.99Z" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.4099 7.05005C13.0399 7.23005 13.4999 7.81005 13.4999 8.49005" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 13.3V20.0101" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                            <p>Điểm đón</p>
+                        </div>
+                        <div class="choose">
+                            <p>Điểm đón</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title">
+                            <div class="wrap-svg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 12.9902C14.4853 12.9902 16.5 10.9755 16.5 8.49023C16.5 6.00495 14.4853 3.99023 12 3.99023C9.51472 3.99023 7.5 6.00495 7.5 8.49023C7.5 10.9755 9.51472 12.9902 12 12.9902Z" stroke="#767676" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+                            <p>Điểm đến</p>
+                        </div>
+                        <div class="choose">
+                            <p>Điểm đến</p>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="title-wd">Thời gian</h6>
+                <div class="search-form">
+                    <div class="search-form__item">
+                        <div class="title no-space">
+                            <fa-icon [icon]="faCalendarDays"></fa-icon>
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                            </div>
+
+                            <mat-form-field class="w-100">
+                                <mat-label>Chọn thời gian thuê</mat-label>
+                                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                                    <input matStartDate formControlName="start" placeholder="Start date">
+                                    <input matEndDate formControlName="end" placeholder="End date">
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                                @if (range.controls.start.hasError('matStartDateInvalid')) {
+                                <mat-error>Invalid start date</mat-error>
+                                } @if (range.controls.end.hasError('matEndDateInvalid')) {
+                                <mat-error>Invalid end date</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <a class="btn btn-color">Tìm Xe</a>
+                </div>
+                } } }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <app-footer></app-footer>
