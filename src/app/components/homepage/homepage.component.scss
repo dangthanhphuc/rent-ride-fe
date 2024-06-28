@@ -1,0 +1,210 @@
+.banner-section .background {
+    position: relative;
+    background: url(https://www.mioto.vn/static/media/bg-landingpage-3.b6531f6e.png);
+    height: 600px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+}
+
+.space {
+    padding: 80px 0;
+}
+
+.banner-section .background h1 {
+    position: relative;
+    color: #fff;
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.25;
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.banner-section .background h6 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 24px 100px;
+}
+
+.banner-section .background .line-bg {
+    width: 280px;
+    margin: 0 auto;
+    height: 1px;
+    background: #fff;
+}
+
+.banner-section .search-option {
+    bottom: 115px;
+    z-index: 3;
+    position: relative;
+}
+
+.search-option .option {
+    display: flex;
+    justify-content: center;
+}
+
+.search-option .option-item {
+    position: relative;
+}
+
+.search-option .option-item:first-child {
+    border-radius: 16px 0 0 0;
+}
+
+.search-option .option-item:last-child {
+    border-radius: 0 16px 0 0;
+    border-right: none;
+}
+
+.search-option .option-item.active {
+    background-color: #5fcf86;
+    border-bottom: 1px solid #5fcf86;
+    color: white;
+}
+
+.search-option .option-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 8px;
+    gap: 8px;
+    width: 180px;
+    background-color: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.search-option .option-item p {
+    color: #c6c6c6;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.search {
+    position: relative;
+}
+
+.search-option .search-form {
+    position: relative;
+    display: flex;
+    padding: 16px 16px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.search-option .search {
+    display: flex;
+    flex-direction: column;
+    margin: 0 150px;
+    padding: 16px;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, .1), 0 9px 12px rgba(75, 75, 75, .1);
+}
+
+.search-option .search-form__item .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 12px;
+}
+
+.search-option .search-form__item .title p {
+    color: #767676;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.search-option .search-form .line {
+    border-right: 1px solid #c6c6c6;
+    margin: 4px 12px;
+}
+
+.search-option .search-form__item.address {
+    max-width: 340px;
+}
+
+.search-option .search-form a.btn {
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    height: 62px;
+}
+
+.btn.btn-color {
+    color: #fff;
+    background-color: #5fcf86;
+    border-color: #5fcf86;
+    height: 62px;
+    white-space: nowrap;
+}
+
+.btn.btn-color:hover {
+    background-color: #79d799;
+    box-shadow: 0 8px 24px 12px rgba(0, 0, 0, .08), 0 20px 24px -4px rgba(0, 0, 0, .08);
+}
+
+.search-option .search .title-wd {
+    font-weight: 800;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.search-option .search .wd-option-form {
+    display: flex;
+    padding: 12px 20px;
+    gap: 40px;
+}
+
+.search-option .search .custom-radio label {
+    padding-left: 14px;
+    font-weight: 700;
+}
+
+.search-option .search .note {
+    display: flex;
+    align-items: center;
+    grid-gap: 2px;
+    gap: 2px;
+    margin: 0 0 4px 20px;
+    font-size: .875rem;
+    font-weight: 500;
+    color: #767676;
+}
+
+.search-option .search-form__item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mat-form-field>.mdc-text-field {
+    background-color: white;
+}
+
+.choose {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-time {
+    height: 56px;
+    background-color: rgb(224, 226, 236);
+    border: 0;
+    border-bottom: 1px solid black;
+    padding: 0 12px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
