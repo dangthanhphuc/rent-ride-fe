@@ -1,1 +1,57 @@
-<p>car-item works!</p>
+<div class="card p-3" style="width: 100%;">
+    <div class="section-image ">
+        <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" class="card-img-top img-custom" alt="...">
+        <div class="avatar avatar-s">
+            <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="" class="w-100 h-100 avatar-image">
+        </div>
+        <div class="label-pos">
+            @if (!car().mortgage) {
+            <span class="rent">Miễn thuê chấp <fa-icon [icon]="faWallet" style="margin-left: 6px; color: greenyellow;"></fa-icon> </span> } @if(car().instant){
+            <span class="rent">Đặt xe nhanh <fa-icon [icon]="faBolt" style="margin-left: 6px; color: yellow;"></fa-icon></span> }
+        </div>
+        <div class="wishlist">
+            <fa-icon [icon]="faHeart" class="d-flex"></fa-icon>
+        </div>
+    </div>
+    <div class="card-body px-0 pt-4">
+        <div class="desc-tag">
+            <span class="tag-item" [ngStyle]="{'background-color': getBackgroundColor(car().model.gearbox)}">{{getGearboxContent(car().model.gearbox)}}</span> @if (car().delivery != undefined) {
+            <span class="tag-item delivery">Giao xe tận nơi</span> }
+        </div>
+        <div class="desc-name">
+            <p>{{car().model.name}}</p>
+        </div>
+        <div class="desc-address">
+            <div class="address">
+                <fa-icon [icon]="faLocationDot" class="text-dark"></fa-icon>
+                <p style="font-size: 12px;">{{car().address}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="desc-info-price">
+            <div class="info">
+                <div class="me-2">
+                    <fa-icon [icon]="faStar" style="color: yellow; margin-right: 4px;"></fa-icon>
+                    <span>5.0</span>
+                </div>
+
+                <div>
+                    <fa-icon [icon]="faSuitcaseRolling" style="color: greenyellow;margin-right: 4px;"></fa-icon>
+                    <span>15 chuyến</span>
+                </div>
+
+            </div>
+            <div class="wrap-price">
+                <div class="price">
+                    <span class="price-special">
+                            1,242
+                    </span> / ngày
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
