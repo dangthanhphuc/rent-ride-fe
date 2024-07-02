@@ -9,11 +9,10 @@ import { CommonModule } from '@angular/common';
 
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDateRangePicker, MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
-import { time } from 'console';
 
 
 @Component({
@@ -46,7 +45,8 @@ export class HomepageComponent implements AfterViewInit {
     selectedRentType : RentType | null = null;
     tripMode = signal<string>("city");
 
-    time = model<string>("12:00");
+    timeStart = model<string>("12:00");
+    timeEnd = model<string>("12:00");
     readonly range = new FormGroup({
         start: new FormControl<Date | null>(null),
         end: new FormControl<Date | null>(null)
@@ -86,11 +86,15 @@ export class HomepageComponent implements AfterViewInit {
         timeInput.click(); // This ensures the native time picker opens
     }
     
-    onChangeTime(event : any) {
-        this.time.set(event.target.value);
+    onChangeTimeStart(event : any) {
+        this.timeStart.set(event.target.value);
+    }
+
+    onChangeTimeEnd(event : any) {
+        this.timeStart.set(event.target.value);
     }
 
     onSearch() {
-        console.log(this.time());
+        
     }
 }
