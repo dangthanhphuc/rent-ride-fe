@@ -33,24 +33,28 @@
             <div class="filter-dropdown">
                 <div class="list-dropdown">
                     <div style="display: flex; align-items: center;">
+                        <button type="button" class="btn" (click)="onResetCarFilter()">
                         <fa-icon [icon]="faArrowsRotate"></fa-icon>
+                      </button>
                     </div>
                     <div class="swiper" style="overflow-x: auto;">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="item-dropdown">
                                     <div class="item-dropdown__wrap ">
+                                        <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.categoryId != undefined && carFilter.categoryId != 0}" data-bs-toggle="modal" data-bs-target="#categoryModal">
                                         <fa-icon [icon]="faCarSide"></fa-icon>
                                         <p>Loại xe</p>
+                                      </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="item-dropdown">
                                     <div class="item-dropdown__wrap">
-                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#brandModal">
-                                        <fa-icon [icon]="faGlobe"></fa-icon>
-                                        <p>Hãng xe</p>
+                                        <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.brandId != undefined && carFilter.brandId != 0}" data-bs-toggle="modal" data-bs-target="#brandModal">
+                                          <fa-icon [icon]="faGlobe"></fa-icon>
+                                          <p>Hãng xe</p>
                                       </button>
                                     </div>
                                 </div>
@@ -68,21 +72,17 @@
               </div> -->
                             <div class="swiper-slide">
                                 <div class="item-dropdown custom-checkbox-selected">
-                                    <input id="cb_instant" type="checkbox" name="instantBooking" /><label for="cb_instant"><div class="item-dropdown__wrap">
-                      <fa-icon [icon]="faBoltLightning"></fa-icon>
-                      <p class="df-align-center">Đặt xe nhanh</p>
-                    </div></label
-                  >
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item-dropdown custom-checkbox-selected">
-                  <input
-                    id="cb_mortgage"
-                    type="checkbox"
-                    name="nonMortgage"
-                  /><label for="cb_mortgage"
-                    ><div class="item-dropdown__wrap" >
+                                    <div class="item-dropdown__wrap">
+                                        <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.instant == true}" (click)="updateFilter('instant', !carFilter.instant)">
+                                        <fa-icon [icon]="faBoltLightning"></fa-icon>
+                                        <p class="df-align-center">Đặt xe nhanh</p>
+                                      </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item-dropdown custom-checkbox-selected">
+                                    <input id="cb_mortgage" type="checkbox" name="nonMortgage" /><label for="cb_mortgage"><div class="item-dropdown__wrap" >
                        <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.mortgage == true}" (click)="updateFilter('mortgage', !carFilter.mortgage)">
                         <fa-icon [icon]="faWallet"></fa-icon>
                         <p class="df-align-center">Miễn thế chấp</p>
@@ -99,7 +99,7 @@
                     name="directDelivery"
                   /><label for="cb_directDelivery"
                     ><div class="item-dropdown__wrap">
-                      <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.instant == true}" (click)="updateFilter('instant', !carFilter.instant)">
+                      <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.delivery == true}" (click)="updateFilter('delivery', !carFilter.delivery)">
                         <fa-icon [icon]="faMapLocationDot"></fa-icon>
                         <p class="df-align-center">Giao nhận xe tận nơi</p>
                       </button>
@@ -129,8 +129,10 @@
                     name="fuelElectric"
                   /><label for="cb_electric"
                     ><div class="item-dropdown__wrap">
-                      <fa-icon [icon]="faChargingStation"></fa-icon>
-                      <p>Xe điện</p>
+                      <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.electric_car == true}" (click)="updateFilter('electric_car', !carFilter.electric_car)">
+                        <fa-icon [icon]="faChargingStation"></fa-icon>
+                        <p>Xe điện</p>
+                      </button>
                     </div></label
                   >
                 </div>
@@ -138,8 +140,10 @@
               <div class="swiper-slide" style="margin-right: 10px">
                 <div class="item-dropdown">
                   <div class="item-dropdown__wrap">
-                    <fa-icon [icon]="faMicrochip"></fa-icon>
-                    <p>Truyền động</p>
+                    <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.gearboxIndex != undefined && carFilter.gearboxIndex != -1}" data-bs-toggle="modal" data-bs-target="#gearboxModal">
+                      <fa-icon [icon]="faMicrochip"></fa-icon>
+                      <p>Truyền động</p>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -548,11 +552,78 @@
                 <h5 class="modal-title" id="brandModalLabel">Hãng xe</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body" style="padding: 24px;">
+                <div class="vehicle-makes">
+                    <div class="custom-radio">
+                        <input type="radio" id="brandAll" name="brandRadio" [value]="0" [(ngModel)]="carFilter.brandId">
+                        <label for="brandAll">Tất cả</label>
+                    </div>
+                    @for (brand of brands; track $index; let index = $index) {
+                    <div class="custom-radio algin-items-center">
+                        <input type="radio" [id]="'brand' + brand.id" name="brandRadio" [value]="brand.id" [(ngModel)]="carFilter.brandId">
+                        <label [for]="'brand' + brand.id" class="algin-items-center"><img [src]="getImgUrlForBrand(brand.name)" alt="" class="d-inline-block img-brand-logo">{{brand.name}}</label>
+                    </div>
+                    }
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn__s_save">Save changes</button>
+                <button type="button" class="btn btn-primary btn__s_save" (click)="applyFilters()" data-bs-dismiss="modal">Áp dụng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="gearboxModal" tabindex="-1" aria-labelledby="gearboxModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gearboxModalLabel">Truyền động</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 24px;">
+                <div class="vehicle-makes">
+                    <div class="custom-radio w-100">
+                        <input type="radio" id="gearboxAll" name="gearboxRadio" [value]="-1" [(ngModel)]="carFilter.gearboxIndex">
+                        <label for="gearboxAll">Tất cả</label>
+                    </div>
+                    @for (gearbox of gearboxes; track $index; let index = $index) {
+                    <div class="custom-radio w-100">
+                        <input type="radio" [id]="'gearbox' + index" name="gearboxRadio" [value]="index" [(ngModel)]="carFilter.gearboxIndex">
+                        <label [for]="'gearbox' + index">{{getGearboxContent(gearbox)}}</label>
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn__s_save" (click)="applyFilters()" data-bs-dismiss="modal">Áp dụng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryModalLabel">Loại xe</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 24px;">
+                <div class="vehicle-makes">
+                    <div class="custom-radio w-100">
+                        <input type="radio" id="categoryAll" name="categoryRadio" [value]="0" [(ngModel)]="carFilter.categoryId">
+                        <label for="categoryAll">Tất cả</label>
+                    </div>
+                    @for (category of categories; track $index) {
+                    <div class="custom-radio w-100">
+                        <input type="radio" [id]="'category' + category.id" name="categoryRadio" [value]="category.id" [(ngModel)]="carFilter.categoryId">
+                        <label [for]="'category' + category.id">{{category.name}}</label>
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn__s_save" (click)="applyFilters()" data-bs-dismiss="modal">Áp dụng</button>
             </div>
         </div>
     </div>

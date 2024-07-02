@@ -20,9 +20,9 @@
                     <li><button class="dropdown-item" type="button">Something else here</button></li>
                 </ul>
             </div>
-            @if (userResponse) {
-            <a href="">Đăng ký</a>
-            <a href="" class="btn-signin">Đăng nhập</a> } @else {
+            @if (!userResponse) {
+            <button type="button" class="btn" style="padding: 12px 16px; font-size: 14px; font-weight: 700;" data-bs-toggle="modal" data-bs-target="#registerModal">Đăng ký</button>
+            <button type="button" class="btn btn-signin" style="padding: 12px 16px; font-size: 14px;font-weight: 700;" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</button> } @else {
             <div class="dropdown-profile">
                 <a href="" class="dropdown-profile">
                     <div class="avatar ">
@@ -33,6 +33,136 @@
                 </a>
             </div>
             }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">loginModal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Đăng ký</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-input-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Tên</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="text" name="ip_phone" class="custom-input-text" formControlName="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Số điện thoại</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="text" name="" class="custom-input-text" formControlName="phone_number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Email</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="text" name="" placeholder="" value="" class="custom-input-text" formControlName="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Ngày sinh</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="date" name="" placeholder="" value="" class="custom-input-text" formControlName="date_of_birth">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Tên đăng nhập</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="text" name="" placeholder="" value="" class="custom-input-text" formControlName="username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Mật khẩu</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="password" name="" placeholder="" value="" class="custom-input-text" formControlName="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Xác nhận mật khẩu</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="password" name="" placeholder="" value="" class="custom-input-text" formControlName="retype_password">
+                                </div>
+                                @if (registerForm.get('retype_password')?.errors && registerForm.get('retype_password')?.touched) { @if (registerForm.errors && registerForm.errors['mismatch'] && registerForm.get('retype_password')?.touched) {
+                                <div class="text-danger">
+                                    Passwords do not match
+                                </div>
+                                } }
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn__s" data-bs-dismiss="modal">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
