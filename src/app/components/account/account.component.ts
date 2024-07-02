@@ -3,6 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faUpload,faRightFromBracket,faPenToSquare,faUser,faHeart,faCar,faCartShopping,faMapLocationDot,faTrash,faGift,faClipboard,faLock} from '@fortawesome/free-solid-svg-icons'
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-account',
   standalone: true,
@@ -10,6 +11,7 @@ import {faUpload,faRightFromBracket,faPenToSquare,faUser,faHeart,faCar,faCartSho
     FontAwesomeModule,
     HeaderComponent,
     FooterComponent,
+    RouterModule
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
