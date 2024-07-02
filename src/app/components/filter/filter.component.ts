@@ -26,6 +26,10 @@ import { UtilityDetailResponse } from '../../responses/utility.detail.response';
 import { RateService } from '../../services/rate.service';
 import { RateResponse } from '../../responses/rate.response';
 import { CarFilter } from '../../models/car.filter';
+import { BrandService } from '../../services/brand.service';
+import { BrandResponse } from '../../responses/brand.response';
+import { CategoryService } from '../../services/category.service';
+import { CategoryResponse } from '../../responses/category.response';
 
 @Component({
     selector: 'app-filter',
@@ -45,7 +49,8 @@ import { CarFilter } from '../../models/car.filter';
         FormsModule,
         MatIconModule,
         CarItemComponent,
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule
     ]
 })
 export class FilterComponent implements OnInit{
@@ -95,11 +100,16 @@ export class FilterComponent implements OnInit{
     };
 
     utilities : UtilityResponse[] = [];
+    brands : BrandResponse[] = [];
+    categories : CategoryResponse[] = [];
+    gearboxes = [Gearbox.AT, Gearbox.CVT, Gearbox.DCT, Gearbox.MT, Gearbox.SAT]
 
     constructor(
         private carService : CarService,
         private utilityService : UtilityService,
-        private rateService : RateService
+        private rateService : RateService,
+        private brandService : BrandService,
+        private categoryService : CategoryService
     ) {
       
     }
@@ -107,6 +117,8 @@ export class FilterComponent implements OnInit{
     ngOnInit(): void {
         this.getCars();
         this.getUtilities();
+        this.getBrands();
+        this.getCategories();
     }
 
     onChangeTimeStart(event : any) {
@@ -130,11 +142,21 @@ export class FilterComponent implements OnInit{
         })
     }
 
+    getCategories() {
+      this.categoryService.categories$().subscribe({
+        next: (response : ResponseObject) => {
+          this.categories = response.data;
+        },
+        error: (error : any) => {
+          console.log(error);
+        }
+      })
+    }
+
     getUtilities() : void {
       this.utilityService.utilities$.subscribe({
         next: (response : ResponseObject) => {
           this.utilities = response.data;
-          debugger
         },
         error : (error : any) => {
           console.log(error);
@@ -146,12 +168,22 @@ export class FilterComponent implements OnInit{
       this.rateService.ratesByCarId$(id).subscribe({
         next: (response : ResponseObject) => {
           this.ratesByCarSelected = response.data;
-          debugger
         },
         error : (error : any) => {
           console.log(error);
         }
       });
+    }
+
+    getBrands() {
+      this.brandService.brands$().subscribe({
+        next: (response : ResponseObject) => {
+          this.brands = response.data;
+        },
+        error: (error : any) => {
+          console.log(error);
+        }
+      }) 
     }
 
     onSelectedCar(car : CarResponse) {
@@ -197,10 +229,8 @@ export class FilterComponent implements OnInit{
                   return 'Số bán tự động';
                 case Gearbox.CVT:
                   return 'Số vô cấp';
-                case Gearbox.SAT:
+                case Gearbox.DCT:
                   return 'Số ly hợp kép';
-                default:
-                  return 'Unknown status';
               }
         }
         return 'Unknown status';
@@ -285,33 +315,107 @@ export class FilterComponent implements OnInit{
         this.applyFilters();
       }
 
+      getImgUrlForBrand(name : string) : string {
+        switch(name) {
+          case "Honda":
+            return "assets/images/brands/honda.png";
+          case "Chevrolet":
+            return "assets/images/brands/chevrolet.png";
+          case "BMW":
+            return "assets/images/brands/bmw.png";
+            case "Ford":
+              return "assets/images/brands/ford.png";
+          case "Isuzu":
+            return "assets/images/brands/isuzu.png";
+          case "Land Rover":
+            return "assets/images/brands/land-rover.png";
+          case "Mazda":
+            return "assets/images/brands/mazda.png";
+          case "Mitsubishi":
+            return "assets/images/brands/mitsubishi.png";
+          case "Nissan":
+            return "assets/images/brands/nissan.png";
+          case "Suzuki":
+            return "assets/images/brands/suzuki.png";
+          case "Vinfast":
+            return "assets/images/brands/vinfast.png";
+          case "Audi":
+            return "assets/images/brands/audi.png";
+          case "Hyundai":
+            return "assets/images/brands/hyundai.png";
+          case "Kia":
+            return "assets/images/brands/kia.png";
+          case "Lexus":
+            return "assets/images/brands/lexus.png";
+          case "Mercedes":
+            return "assets/images/brands/mercedes.png";
+          case "Peugeot":
+            return "assets/images/brands/peugeot.png";
+          case "Toyota":
+            return "assets/images/brands/toyota.png";
+        }
+        return "Unknown";
+      }
+
+      onResetCarFilter(){
+        this.carFilter = 
+        {
+          mortgage: false,
+          instant: false,
+          delivery: false,
+          electric_car: false,
+          brandId : undefined,
+          categoryId : undefined,
+          gearboxIndex : undefined
+        };
+        this.applyFilters();
+      }
+
 
       applyFilters() {
+        console.log(this.carFilter.brandId);
         this.filterCars = this.cars.filter(car => {
           let matchesMortgage = true;
           let matchesInstant = true;
           let matchesBrand = true;
-          let matchesModel = true;
-          debugger
+          let matchesDelivery = true; 
+          let matchesElectricCar = true;
+          let matchesGearbox = true;
+          let matchesCategory = true;
+          
           if (this.carFilter.mortgage) {
             matchesMortgage = !car.mortgage;
           }
-    
+
           if (this.carFilter.instant) {
             matchesInstant = car.instant;
           }
     
-          if (this.carFilter.brandId !== undefined) {
+          if (this.carFilter.delivery) {
+            matchesDelivery = car.delivery != undefined;
+          }
+    
+          if (this.carFilter.brandId !== undefined && this.carFilter.brandId != 0) {
             matchesBrand = car.model.brand.id === this.carFilter.brandId;
           }
     
-          if (this.carFilter.categoryId !== undefined) {
-            matchesModel = car.model.category.id === this.carFilter.categoryId;
+          if (this.carFilter.categoryId !== undefined && this.carFilter.categoryId != 0) {
+            matchesCategory = car.model.category.id === this.carFilter.categoryId;
+          }
+
+          if(this.carFilter.electric_car) {
+            matchesElectricCar = car.model.fuel === Fuel.ELECTRICITY;
+          }
+
+          if(this.carFilter.gearboxIndex != undefined && this.carFilter.gearboxIndex != -1) {
+            matchesGearbox = car.model.gearbox === this.gearboxes[this.carFilter.gearboxIndex];
           }
     
-          return matchesMortgage && matchesInstant && matchesBrand && matchesModel;
+          return matchesCategory && matchesMortgage && matchesInstant && matchesDelivery && matchesBrand && matchesElectricCar && matchesGearbox;
         });
       }
+
+      
 }
 
 

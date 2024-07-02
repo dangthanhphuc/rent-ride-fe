@@ -57,7 +57,7 @@ export class CarItemComponent {
         return 'Số bán tự động';
       case Gearbox.CVT:
         return 'Số vô cấp';
-      case Gearbox.SAT:
+      case Gearbox.DCT:
         return 'Số ly hợp kép';
       default:
         return 'Unknown status';

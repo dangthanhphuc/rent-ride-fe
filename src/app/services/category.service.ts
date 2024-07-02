@@ -4,21 +4,23 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, catchError, throwError } from "rxjs";
 import { ResponseObject } from "../responses/api.response";
 
+
 @Injectable({
     providedIn: 'root'
 })
-export class BrandService {
+export class CategoryService {
 
-    private readonly apiBaseUrl = `${environment.apiBaseUrl}/brands`;
+    private readonly apiBaseUrl = `${environment.apiBaseUrl}/categories`;
 
-    constructor(
-        private http : HttpClient
-    ){}
+  constructor(
+    private http : HttpClient
+  ) { 
 
+  }
 
-    brands$ = () : Observable<ResponseObject> => this.http.get<ResponseObject>(`${this.apiBaseUrl}`).pipe(
-        catchError(this.handleError)
-    )
+  categories$ = () : Observable<ResponseObject> => this.http.get<ResponseObject>(`${this.apiBaseUrl}`).pipe(
+    catchError(this.handleError)
+    );
 
     handleError(error : HttpErrorResponse) : Observable<never> {
         console.log(error);

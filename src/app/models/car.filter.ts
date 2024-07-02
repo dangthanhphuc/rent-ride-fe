@@ -5,5 +5,5 @@ export interface CarFilter {
     electric_car : boolean;
     brandId?: number;
     categoryId?: number;
-    gearboxId?: number;
+    gearboxIndex?: number;
 }

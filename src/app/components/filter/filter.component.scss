@@ -715,3 +715,29 @@ pre {
     background-color: #79d799;
     box-shadow: 0 8px 24px 12px rgba(0, 0, 0, .08), 0 20px 24px -4px rgba(0, 0, 0, .08);
 }
+
+.vehicle-makes {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 12px;
+    gap: 12px;
+}
+
+.vehicle-makes .custom-radio {
+    width: calc(50% - 6px);
+}
+
+.custom-radio label {
+    padding-left: 24px;
+}
+
+.img-brand-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.algin-items-center {
+    display: flex;
+    align-items: center;
+}
