@@ -1,1 +1,561 @@
-<p>filter works!</p>
+<app-header></app-header>
+
+<div class="finding-section mb-5">
+    <div class="m-container">
+        <div class="finding-container">
+            <div class="dss">
+                <div class="h-100">
+                    <input type="time" (change)="onChangeTimeStart($event)" class="input-time" />
+                </div>
+
+                <div class="h-100">
+                    <input type="time" id="" (change)="onChangeTimeEnd($event)" class="input-time" />
+                </div>
+
+                <mat-form-field class="w-100">
+                    <mat-label>Chọn thời gian thuê</mat-label>
+                    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                        <input matStartDate formControlName="start" placeholder="Start date" />
+                        <input matEndDate formControlName="end" placeholder="End date" />
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+
+                    @if (range.controls.start.hasError('matStartDateInvalid')) {
+                    <mat-error>Invalid start date</mat-error>
+                    } @if (range.controls.end.hasError('matEndDateInvalid')) {
+                    <mat-error>Invalid end date</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="filter-container">
+            <div class="filter-dropdown">
+                <div class="list-dropdown">
+                    <div style="display: flex; align-items: center;">
+                        <fa-icon [icon]="faArrowsRotate"></fa-icon>
+                    </div>
+                    <div class="swiper" style="overflow-x: auto;">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="item-dropdown">
+                                    <div class="item-dropdown__wrap ">
+                                        <fa-icon [icon]="faCarSide"></fa-icon>
+                                        <p>Loại xe</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item-dropdown">
+                                    <div class="item-dropdown__wrap">
+                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#brandModal">
+                                        <fa-icon [icon]="faGlobe"></fa-icon>
+                                        <p>Hãng xe</p>
+                                      </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="swiper-slide">
+                                <div class="item-dropdown custom-checkbox-selected">
+                                    <input id="cb_owner5star" type="checkbox" name="ownerHostFiveStar" />
+                                    <label for="cb_owner5star">
+                    <div class="item-dropdown__wrap">
+                      <fa-icon [icon]="faCrown"></fa-icon>
+                      <p class="df-align-center">Chủ xe 5 sao</p>
+                    </div></label
+                  >
+                </div>
+              </div> -->
+                            <div class="swiper-slide">
+                                <div class="item-dropdown custom-checkbox-selected">
+                                    <input id="cb_instant" type="checkbox" name="instantBooking" /><label for="cb_instant"><div class="item-dropdown__wrap">
+                      <fa-icon [icon]="faBoltLightning"></fa-icon>
+                      <p class="df-align-center">Đặt xe nhanh</p>
+                    </div></label
+                  >
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="item-dropdown custom-checkbox-selected">
+                  <input
+                    id="cb_mortgage"
+                    type="checkbox"
+                    name="nonMortgage"
+                  /><label for="cb_mortgage"
+                    ><div class="item-dropdown__wrap" >
+                       <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.mortgage == true}" (click)="updateFilter('mortgage', !carFilter.mortgage)">
+                        <fa-icon [icon]="faWallet"></fa-icon>
+                        <p class="df-align-center">Miễn thế chấp</p>
+                       </button>
+                    </div></label
+                  >
+                </div>
+              </div>
+              <div class="swiper-slide" style="margin-right: 10px">
+                <div class="item-dropdown custom-checkbox-selected">
+                  <input
+                    id="cb_directDelivery"
+                    type="checkbox"
+                    name="directDelivery"
+                  /><label for="cb_directDelivery"
+                    ><div class="item-dropdown__wrap">
+                      <button type="button" class="btn" [ngClass]="{'filter-checked': carFilter.instant == true}" (click)="updateFilter('instant', !carFilter.instant)">
+                        <fa-icon [icon]="faMapLocationDot"></fa-icon>
+                        <p class="df-align-center">Giao nhận xe tận nơi</p>
+                      </button>
+                    </div></label
+                  >
+                </div>
+              </div>
+              <!-- <div class="swiper-slide">
+                <div class="item-dropdown custom-checkbox-selected">
+                  <input
+                    id="cb_discount"
+                    type="checkbox"
+                    name="discount"
+                  /><label for="cb_discount"
+                    ><div class="item-dropdown__wrap">
+                      <fa-icon [icon]="faPercent"></fa-icon>
+                      <p class="df-align-center">Xe giảm giá</p>
+                    </div></label
+                  >
+                </div>
+              </div> -->
+              <div class="swiper-slide">
+                <div class="item-dropdown custom-checkbox-selected">
+                  <input
+                    id="cb_electric"
+                    type="checkbox"
+                    name="fuelElectric"
+                  /><label for="cb_electric"
+                    ><div class="item-dropdown__wrap">
+                      <fa-icon [icon]="faChargingStation"></fa-icon>
+                      <p>Xe điện</p>
+                    </div></label
+                  >
+                </div>
+              </div>
+              <div class="swiper-slide" style="margin-right: 10px">
+                <div class="item-dropdown">
+                  <div class="item-dropdown__wrap">
+                    <fa-icon [icon]="faMicrochip"></fa-icon>
+                    <p>Truyền động</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn text-nowrap border">
+          <fa-icon [icon]="faSliders"></fa-icon>
+          Bộ lọc
+        </button>
+      </div>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<div class="list-car-section">
+  <div class="container">
+    <div class="row">
+      @for (car of filterCars; track $index) {
+        <div class="col-3 custom-item">
+          <button type="button" class="btn p-0 w-100" data-bs-toggle="modal" data-bs-target="#selectedModal" (click)="onSelectedCar(car)">
+            <app-car-item [car]="car"></app-car-item>
+          </button>
+        </div> 
+      }
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="selectedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-size">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="m-container" style="width: 1280px;">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" (click)="inView('outsfeatures')">Đặc điểm</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="inView('papers')">Giấy tờ thuê xe</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="inView('carmap')">Vị trí xe</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="inView('owner')">Chủ xe</a>
+              </li>
+            </ul>
+          
+        </div>
+        <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="overflow-y: auto; height: 600px;">
+
+        <div class="m-container">
+          <div class="car-container" style="height: 500px;">
+
+            <div class="main-img">
+              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+            </div>
+
+            <div class="sub-img">
+              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+            </div>
+          </div>
+        </div> 
+        
+        <div class="m-container">
+          <div class="detail-container mt-4">
+            <div class="content-detail">
+              <div class="info-car-basic">
+                <div class="group-name">
+                  <h3>{{selectedCar?.model?.name}}</h3>
+                  <div class="group-action d-flex-center-btw">
+                    <div class="shared">
+                      <fa-icon [icon]="faPaperclip" class="wrap-icon"></fa-icon>
+                      <fa-icon [icon]="faHeart" class="wrap-icon"></fa-icon>
+                    </div>
+                  </div>
+                </div>
+                <div class="group-total">
+                  <div class="me-2">
+                    <fa-icon [icon]="faStar" style="color: yellow; margin-right: 4px;"></fa-icon>
+                    <span>5.0</span>
+                   </div>
+
+                  <div class="me-2">
+                      <fa-icon [icon]="faSuitcaseRolling" style="color: greenyellow;margin-right: 4px;"></fa-icon>
+                      <span>15 chuyến</span>
+                  </div>
+                  
+                  <div>
+                    <span>{{selectedCar?.address}}</span>
+                  </div>
+
+                </div>
+                <div class="group-tag">
+                  <span class="tag-item" [ngStyle]="{'background-color': getBackgroundColor(selectedCar?.model?.gearbox)}">{{getGearboxContent(selectedCar?.model?.gearbox)}}</span>
+                  @if (selectedCar?.delivery != undefined) {
+                    <span class="tag-item delivery">Giao xe tận nơi</span>
+                  }
+                  @if (!selectedCar?.mortgage) {
+                    <span class="tag-item delivery">Miễn thuế chấp</span>
+                  }
+
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-detail">
+              <div class="insurance">
+                <fa-icon [icon]="faShield"></fa-icon>
+                <div class="content"> 
+                  <p style="color: #5fcf86;">Bảo hiểm thuê xe</p>
+                  <p class="note">Chuyến đi có mua bảo hiểm. Khách thuê bồi thường tối đa 2.000.000 VNĐ trong trường hợp có sự cố ngoài ý muốn.</p>
+                  <p class="desc">Xem chi tiết</p>
+                </div>
+              </div>
+              <div class="rent-box">
+                <div class="price"> 
+                  <h4><span>{{selectedCar ? selectedCar.price / 1000 : "Unknown" }}K</span> / ngày</h4>
+                </div>
+                <div class="date-time-form">
+                  <div class="form-item">
+                    <label>Nhận xe</label>
+                                    <input type="datetime-local" class="datetime-local-input" />
+                                </div>
+                                <div class="line"></div>
+                                <div class="form-item">
+                                    <label> xe</label>
+                                    <input type="datetime-local" class="datetime-local-input" />
+                                </div>
+                            </div>
+                            <div class="line-page"></div>
+                            <div class="price-container">
+                                <div class="price-item">
+                                    <p>Đơn giá thuê</p>
+                                    <p class="cost">
+                                        <span>{{formatPrice(selectedCar?.price)}}</span>đ / ngày
+                                    </p>
+                                </div>
+                                <div class="line-page"></div>
+                                <div class="price-item">
+                                    <p>Tổng cộng</p>
+                                    <p class="cost"><span>{{formatPrice(selectedCar?.price)}}đ </span>x&nbsp;1&nbsp;ngày</p>
+                                </div>
+                                <div class="line-page"></div>
+                                <div class="price-item total">
+                                    <p>Thành tiền</p>
+                                    <p class="cost"><span>{{formatPrice(selectedCar?.price)}}đ</span></p>
+                                </div>
+                            </div>
+                            <button class="btn btn-success w-100 btn--m">
+                              <fa-icon [icon]="faBoltLightning"></fa-icon>
+                              Chọn thuê
+                            </button>
+                        </div>
+                        <div class="surcharge">
+                            <p class="title text-primary">Phụ phí có thể phát sinh</p>
+                            <div class="surcharge-container">
+                                <div class="surcharge-item">
+                                    <fa-icon [icon]="faCircleInfo"></fa-icon>
+                                    <div class="content">
+                                        <div class="content-item">
+                                            <p class="title">Phí vượt giới hạn</p>
+                                            <p class="cost">
+                                                <span>{{formatPrice(selectedCar?.over_fee)}}đ/km</span>
+                                            </p>
+                                        </div>
+                                        <div class="content-item">
+                                            <p style="text-align: justify;">Phụ phí phát sinh nếu lộ trình di chuyển vượt quá <span>{{selectedCar?.max_km}}km</span> khi thuê xe</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="surcharge-item">
+                                    <fa-icon [icon]="faCircleInfo"></fa-icon>
+                                    <div class="content">
+                                        <div class="content-item">
+                                            <p class="title">Phí vệ sinh</p>
+                                            <p class="cost">
+                                                <span>{{formatPrice(100000)}}đ/km</span>
+                                            </p>
+                                        </div>
+                                        <div class="content-item">
+                                            <p style="text-align: justify;">Phụ phí phát sinh khi xe hoàn trả không đảm bảo vệ sinh (nhiều vết bẩn, bùn cát, sình lầy...)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="surcharge-item">
+                                    <fa-icon [icon]="faCircleInfo"></fa-icon>
+                                    <div class="content">
+                                        <div class="content-item">
+                                            <p class="title">Phí khử mùi</p>
+                                            <p class="cost">
+                                                <span>{{formatPrice(200000)}}đ/km</span>
+                                            </p>
+                                        </div>
+                                        <div class="content-item">
+                                            <p style="text-align: justify;">Phụ phí phát sinh khi xe hoàn trả bị ám mùi khó chịu (mùi thuốc lá, thực phẩm nặng mùi...)</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="content-detail">
+                        <div class="line-page">
+                        </div>
+                        <div class="info-car-desc" id="outsfeatures">
+                            <h6>Đặc điểm</h6>
+                            <div class="outstanding-features">
+                                <div class="outstanding-features__item">
+                                    <fa-icon [icon]="faChair" class=""></fa-icon>
+                                    <div class="title">
+                                        <p class="sub">Số ghế</p>
+                                        <p class="main">{{selectedCar?.model?.seats}} chỗ</p>
+                                    </div>
+                                </div>
+                                <div class="outstanding-features__item">
+                                    <fa-icon [icon]="faMicrochip"></fa-icon>
+                                    <div class="title">
+                                        <p class="sub">Truyền động</p>
+                                        <p class="main">{{getGearboxContent(selectedCar?.model?.gearbox)}}</p>
+                                    </div>
+                                </div>
+                                <div class="outstanding-features__item">
+                                    <fa-icon [icon]="faGasPump"></fa-icon>
+                                    <div class="title">
+                                        <p class="sub">Nhiên liệu</p>
+                                        <p class="main">{{getContentFuel(selectedCar?.model?.fuel)}}</p>
+                                    </div>
+                                </div>
+                                <div class="outstanding-features__item">
+                                    <fa-icon [icon]="faIndustry"></fa-icon>
+                                    <div class="title">
+                                        <p class="sub">Năm sản xuất</p>
+                                        <p class="main">{{selectedCar?.model?.production_year}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-page"></div>
+                        <div class="info-car-desc">
+                            <h6>Mô tả</h6><pre class="">{{selectedCar?.model?.name}}</pre>
+                        </div>
+                        <div class="line-page"></div>
+                        <div class="info-car-desc">
+                            <h6>Các tiện nghi khác</h6>
+                            <div class="features-car">
+                                <ul>
+                                    @for (utility_detail of selectedCar?.utility_details; track $index) {
+                                    <li>
+                                        <img loading="lazy" [src]="getIconForUtility(utility_detail)" alt="Mioto - Thuê xe tự lái"> {{getNameUtilityById(utility_detail.utility_id)}}
+                                    </li>
+                                    } @empty {
+                                    <p>not found</p>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="line-page"></div>
+                        <div class="info-car-desc" id="papers">
+                            <h6 class="df-align-center">Giấy tờ thuê xe</h6>
+                            <div class="required-papers">
+                                <div class="required-papers__item">
+                                    <div class="type__item">
+                                        <fa-icon [icon]="faCircleInfo"></fa-icon>
+                                        <p class="font-12">Chọn 1 trong 2 hình thức</p>
+                                    </div>
+                                    <div class="type-content">
+                                        <fa-icon [icon]="faAddressCard"></fa-icon>
+                                        <div class="type-name">
+                                            <p>GPLX (đối chiếu) & CCCD (đối chiếu VNeID)</p>
+                                        </div>
+                                    </div>
+                                    <div class="type-content">
+                                        <fa-icon [icon]="faPassport"></fa-icon>
+                                        <div class="type-name">
+                                            <p>GPLX (đối chiếu) &amp; Passport (giữ lại)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-page"></div>
+                        <div class="info-car-desc" id="papers">
+                            <h6 class="df-align-center">Tài sản thế chấp</h6>
+                            <div class="required-papers">
+                                @if (selectedCar?.mortgage) {
+                                <p>15 triệu (tiền mặt/chuyển khoản cho chủ xe khi nhận xe) hoặc Xe máy (kèm cà vẹt gốc) giá trị 15 triệu</p>
+                                } @else {
+                                <p>Không yêu cầu khách thuê thế chấp Tiền mặt hoặc Xe máy</p>
+                                }
+                            </div>
+                        </div>
+                        <div class="info-car-desc" id="carmap">
+                            <h6>Vị trí xe</h6>
+                            <div class="car-address">
+                                <div class="address">
+                                    <fa-icon [icon]="faMapLocationDot"></fa-icon>
+                                    <p>{{selectedCar?.address}}</p>
+                                </div>
+                                <div class="maps-detail">
+                                    <fa-icon [icon]="faMap"></fa-icon>
+                                    <p>Xem bản đồ</p>
+                                    <fa-icon [icon]="faChevronRight"></fa-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-page"></div>
+                        <div class="info-car-desc" id="owner">
+                            <h6>Chủ xe</h6>
+                            <div class="profile-info">
+                                <a href="" class="profile-desc">
+                                    <div class="avatar avatar--m border-0">
+                                        <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h5>{{selectedCar?.user?.name}}</h5>
+                                        <div class="verifi">
+                                            <div class="me-2">
+                                                <fa-icon [icon]="faStar" style="color: yellow; margin-right: 4px;"></fa-icon>
+                                                <span>5.0</span>
+                                            </div>
+
+                                            <div class="me-2">
+                                                <fa-icon [icon]="faSuitcaseRolling" style="color: greenyellow;margin-right: 4px;"></fa-icon>
+                                                <span>15 chuyến</span>
+                                            </div>
+
+                                            <div>
+                                                <span>{{selectedCar?.address}}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="info-car-desc">
+                            <div class="reviews">
+                                <div class="rate-review">
+
+                                    <div class="me-2">
+                                        <fa-icon [icon]="faStar" style="color: yellow; margin-right: 4px;"></fa-icon>
+                                        <span>5.0</span>
+                                    </div>
+
+                                    <div>
+                                        <span>{{ratesByCarSelected.length}} đánh giá</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="list-reviews">
+                                @for (rate of ratesByCarSelected; track $index) {
+                                <div class="item-review">
+                                    <div class="profile">
+                                        <div class="desc">
+                                            <a href="" class="avatar avatar--m">
+                                                <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+                                            </a>
+                                            <div class="info">
+                                                <a href="/profile/UKGFCZ">
+                                                    <h6>{{rate.user.name}}</h6>
+                                                </a>
+                                                <div class="rate">
+                                                    <div class="star-ratings" title="5 Stars" style="position: relative; box-sizing: border-box; display: inline-block;"><svg class="star-grad" style="position: absolute; z-index: 0; width: 0px; height: 0px; visibility: hidden;"><defs><linearGradient id="starGrad792897861428024" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" class="stop-color-first" style="stop-color: rgb(255, 198, 52); stop-opacity: 1;"></stop><stop offset="0%" class="stop-color-first" style="stop-color: rgb(255, 198, 52); stop-opacity: 1;"></stop><stop offset="0%" class="stop-color-final" style="stop-color: rgb(203, 211, 227); stop-opacity: 1;"></stop><stop offset="100%" class="stop-color-final" style="stop-color: rgb(203, 211, 227); stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                        <div class="star-container" style="position: relative; display: inline-block; vertical-align: middle; padding-right: 1px;"><svg viewBox="0 0 51 48" class="widget-svg" style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;"><path class="star" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z" style="fill: rgb(255, 198, 52); transition: fill 0.2s ease-in-out 0s;"></path></svg></div>
+                                                        <div class="star-container" style="position: relative; display: inline-block; vertical-align: middle; padding-right: 1px;"><svg viewBox="0 0 51 48" class="widget-svg" style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;"><path class="star" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z" style="fill: rgb(255, 198, 52); transition: fill 0.2s ease-in-out 0s;"></path></svg></div>
+                                                        <div class="star-container" style="position: relative; display: inline-block; vertical-align: middle; padding-right: 1px;"><svg viewBox="0 0 51 48" class="widget-svg" style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;"><path class="star" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z" style="fill: rgb(255, 198, 52); transition: fill 0.2s ease-in-out 0s;"></path></svg></div>
+                                                        <div class="star-container" style="position: relative; display: inline-block; vertical-align: middle; padding-right: 1px;"><svg viewBox="0 0 51 48" class="widget-svg" style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;"><path class="star" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z" style="fill: rgb(255, 198, 52); transition: fill 0.2s ease-in-out 0s;"></path></svg></div>
+                                                        <div class="star-container" style="position: relative; display: inline-block; vertical-align: middle; padding-right: 1px;"><svg viewBox="0 0 51 48" class="widget-svg" style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;"><path class="star" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z" style="fill: rgb(255, 198, 52); transition: fill 0.2s ease-in-out 0s;"></path></svg></div>
+                                                    </div>
+                                                    <p class="time">25/06/2024</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                            <div class="btn-see-more">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="brandModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="brandModalLabel">Hãng xe</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn__s_save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

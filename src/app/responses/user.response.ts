@@ -1,6 +1,7 @@
+import { LicenseResponse } from "./license.response";
+import { RoleResponse } from "./role.response";
 
 export interface UserResponse {
-
     id : number;
     name: string;
     phone_number : string;
@@ -8,8 +9,6 @@ export interface UserResponse {
     email : string;
     date_of_birth : Date;
     username : string;
-    password : string;
-    licence : string; 
-    role : string;
-
+    license?: LicenseResponse; 
+    role : RoleResponse;
 }

@@ -16,7 +16,12 @@
                 <div class="option-item" [ngClass]="{ active: selectedRentType === rentType }" (click)="onClickOption(rentType)">
                     <!--  Thêm class active khi click -->
                     <fa-icon [icon]="getOptionIcon(rentType)"></fa-icon>
+
+                    @if (rentType === RentType.SELF_DRIVE) {
                     <p>Xe tự lái</p>
+                    } @else if (rentType === RentType.WITH_DRIVER) {
+                    <p>Xe có tài xế</p>
+                    }
                     <!--  Thêm text-white active khi click -->
                 </div>
                 }
@@ -42,7 +47,11 @@
                         <div class="choose">
 
                             <div class="h-100">
-                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                                <input type="time" (change)="onChangeTimeStart($event)" class="input-time">
+                            </div>
+
+                            <div class="h-100">
+                                <input type="time" id="" (change)="onChangeTimeEnd($event)" class="input-time">
                             </div>
 
                             <mat-form-field class="w-100">
@@ -103,7 +112,11 @@
                             <fa-icon [icon]="faCalendarDays"></fa-icon>
 
                             <div class="h-100">
-                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                                <input type="time" (change)="onChangeTimeStart($event)" class="input-time">
+                            </div>
+
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTimeEnd($event)" class="input-time">
                             </div>
 
                             <mat-form-field class="w-100">
@@ -159,7 +172,11 @@
                         <div class="title no-space">
                             <fa-icon [icon]="faCalendarDays"></fa-icon>
                             <div class="h-100">
-                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                                <input type="time" (change)="onChangeTimeStart($event)" class="input-time">
+                            </div>
+
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTimeEnd($event)" class="input-time">
                             </div>
 
                             <mat-form-field class="w-100">
@@ -214,7 +231,11 @@
                         <div class="title no-space">
                             <fa-icon [icon]="faCalendarDays"></fa-icon>
                             <div class="h-100">
-                                <input type="time" (change)="onChangeTime($event)" class="input-time">
+                                <input type="time" (change)="onChangeTimeStart($event)" class="input-time">
+                            </div>
+
+                            <div class="h-100">
+                                <input type="time" (change)="onChangeTimeEnd($event)" class="input-time">
                             </div>
 
                             <mat-form-field class="w-100">

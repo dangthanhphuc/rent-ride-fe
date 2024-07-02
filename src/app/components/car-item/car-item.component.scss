@@ -1,0 +1,156 @@
+.section-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+.img-custom {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar {
+    position: absolute;
+    bottom: -12px;
+    left: 16px;
+}
+
+.avatar-s {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.avatar-image {
+    border-radius: 50%;
+}
+
+.desc-info-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.desc-info-price .info {
+    display: flex;
+    align-items: center;
+    color: #767676;
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.desc-address {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    color: #767676;
+    font-size: 12px !important;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    gap: 4px;
+}
+
+.desc-info-price .wrap-price .price-special {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0 4px;
+    color: #5fcf86;
+}
+
+.desc-info-price .wrap-price .price {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    font-size: .75rem;
+    color: #767676;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.desc-name {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.desc-name p {
+    color: #000;
+    font-size: 16px;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.desc-tag {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+span.tag-item {
+    color: #262626;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 8px 8px 0;
+    width: fit-content;
+}
+
+.label-pos {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    font-size: .625rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.label-pos span.rent {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    grid-gap: 2px;
+    gap: 2px;
+}
+
+.label-pos span {
+    padding: 4px 8px;
+    border-radius: 100px;
+    background: rgba(12, 12, 12, .5);
+    width: fit-content;
+}
+
+.wishlist {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
+    border-radius: 100%;
+    background: rgba(12, 12, 12, .5);
+    z-index: 2;
+    color: white;
+}
+
+.delivery {
+    background-color: #dff5e7;
+}
