@@ -1,0 +1,87 @@
+.content-account {
+    gap: 24px;
+}
+
+.content-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.content-title h4 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.content-title p {
+    margin: 0;
+}
+
+.content-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 32px;
+}
+
+.title h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.custom-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wrap-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrap-info .title-status p {
+    margin: 0;
+}
+
+.wrap-input {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wrap-text input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.apply-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.apply-button .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.apply-button .btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
