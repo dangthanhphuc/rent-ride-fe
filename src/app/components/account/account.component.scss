@@ -1,0 +1,137 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.border-top {
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.note {
+    font-size: 12px;
+    color: #f04438;
+}
+.col-md-4,
+.col-md-8 {
+    padding: 10px;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.title h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.title-edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.total-trips {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.total-trips .wrap-svg {
+    margin-right: 5px;
+}
+
+.avatar {
+    width: 148px;
+    height: 148px;
+    line-height: 148px;
+    border-radius: 100%;
+}
+.user-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.col-md-8 h4 {
+    margin: 10px 0 5px;
+    font-size: 24px;
+    color: #333;
+}
+
+.col-md-8 p {
+    font-size: 14px;
+    color: #777;
+}
+
+.user-info {
+    text-align: right;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.user-info p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+}
+
+.info-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    gap: 8px;
+}
+
+.contact-item p {
+    font-size: 1rem;
+    gap: 10px;
+}
+.gplx-note {
+    font-size: .75rem;
+    font-weight: 500;
+    color: #666;
+    margin-top: 10px;
+}
+

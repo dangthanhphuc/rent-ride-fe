@@ -12,4 +12,5 @@ export class FooterComponent {
   faFacebook = faFacebook;
   faTiktok = faTiktok;
   faTwitter = faTwitter;
+  
 }
