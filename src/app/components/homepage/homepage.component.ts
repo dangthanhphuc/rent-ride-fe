@@ -13,6 +13,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
@@ -31,7 +32,8 @@ import {MatIconModule} from '@angular/material/icon';
         MatDatepickerModule,
         MatInputModule,
         FormsModule,
-        MatIconModule
+        MatIconModule,
+        RouterModule
     ]
 })
 export class HomepageComponent implements AfterViewInit {
@@ -53,7 +55,7 @@ export class HomepageComponent implements AfterViewInit {
       });
 
     constructor() {
-        this.selectedRentType = RentType.WITH_DRIVER;
+        this.selectedRentType = RentType.SELF_DRIVE;
     }
     ngAfterViewInit(): void {
         // this.campaignTwoPicker.open();
