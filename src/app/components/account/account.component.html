@@ -7,44 +7,54 @@
                 <h4>Xin chào bạn!</h4>
                 <div class="contact-info">
                     <div class="contact-item">
-                        <fa-icon [icon]="faUser"></fa-icon>
-                        <p>Tài khoản của tôi</p>
+                        <button type="button" routerLink="/account/infor">
+                            <fa-icon [icon]="faUser" ></fa-icon>
+                            <p>Tài khoản của tôi</p>
+                        </button>
                     </div>
-                    <div class="contact-item">
+                    <!-- <div class="contact-item">
                         <fa-icon [icon]="faHeart"></fa-icon>
                         <p>Xe yêu thích</p>
+                    </div> -->
+                    <div class="contact-item">
+                        <button type="button" routerLink="/account/cars">
+                            <fa-icon [icon]="faCar"></fa-icon>
+                            <p>Xe của tôi</p>
+                        </button>
                     </div>
                     <div class="contact-item">
-                        <fa-icon [icon]="faCar"></fa-icon>
-                        <p>Xe của tôi</p>
+                        <button type="button" routerLink="/account/trips">
+                            <fa-icon [icon]="faMapLocationDot"></fa-icon>
+                            <p>Chuyến của tôi</p>
+                        </button>
                     </div>
-                    <div class="contact-item">
-                        <fa-icon [icon]="faMapLocationDot"></fa-icon>
-                        <p>Chuyến của tôi</p>
-                    </div>
-                    <div class="contact-item">
+                    <!-- <div class="contact-item">
                         <fa-icon [icon]="faCartShopping"></fa-icon>
                         <p>Đơn hàng thuê xe dài hạn</p>
-                    </div>
-                    <div class="contact-item">
+                    </div> -->
+                    <!-- <div class="contact-item">
                         <fa-icon [icon]="faGift"></fa-icon>
                         <p>Quà tặng</p>
                     </div>
                     <div class="contact-item">
                         <fa-icon [icon]="faClipboard"></fa-icon>
                         <p>Địa chỉ của tôi</p>
-                    </div>
+                    </div> -->
                     <div class="contact-item">
-                        <fa-icon [icon]="faLock"></fa-icon>
-                        <p>Đổi mật khẩu</p>
+                        <button type="button" routerLink="/account/resetpw">
+                            <fa-icon [icon]="faLock"></fa-icon>
+                            <p>Đổi mật khẩu</p>
+                        </button>
                     </div>
-                    <div class="contact-item">
+                    <!-- <div class="contact-item">
                         <fa-icon [icon]="faTrash"></fa-icon>
                         <p>Yêu cầu xóa tài khoản</p>
-                    </div>
+                    </div> -->
                     <div class="contact-item">
-                        <fa-icon [icon]="faRightFromBracket"></fa-icon>
-                        <p>Đăng xuất</p>
+                        <button type="button" (click)="onLogout()">
+                            <fa-icon [icon]="faRightFromBracket"></fa-icon>
+                            <p>Đăng xuất</p>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -117,7 +127,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-md-8"> 
+            <div class="col-md-8">
                 <router-outlet>
                 </router-outlet>
             </div>
