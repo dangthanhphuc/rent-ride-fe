@@ -1,1 +1,91 @@
-<p>trips works!</p>
+<div class="content-account">
+    <div class="content-title">
+        <h4 class="my-trips">Chuyến của tôi</h4>
+    </div>
+    
+    <div class="mytrips-mode row align-items-center">
+        <div class="col-md-8 ">
+            <div class="tab-mode">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item h5">
+                        <a class="nav-link active" id="current-trip-tab" data-toggle="tab" href="#current-trip" role="tab" aria-controls="current-trip" aria-selected="true">Chuyến hiện tại</a>
+                    </li>
+                    <li class="nav-item h5">
+                        <a class="nav-link" id="trip-history-tab" data-toggle="tab" href="#trip-history" role="tab" aria-controls="trip-history" aria-selected="false">Lịch sử chuyến</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end ">
+            <button class="button-filter rounded p-2 border-2">
+                <fa-icon [icon]="faFilter"></fa-icon>
+                Bộ Lọc
+            </button>
+        </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="current-trip" role="tabpanel" aria-labelledby="current-trip-tab">
+            <div class="content d-flex justify-content-center">
+                <img src="/assets/images/empty-trip.png" alt="No trip illustration">           
+            </div>
+            <p class="h5 fw-bold mt-5 d-flex justify-content-center">Bạn chưa có chuyến</p>
+        </div>
+        <div class="tab-pane fade" id="trip-history" role="tabpanel" aria-labelledby="trip-history-tab">
+            <div class="content">
+                <p>Lịch sử chuyến của bạn sẽ hiển thị ở đây.</p>
+            </div>
+        </div>
+    </div>
+    <div class="filter-modal">
+        <div class="filter-header">
+            <h2>Bộ lọc</h2>
+            <button id="closeFilterButton" class="close-btn">&times;</button>
+        </div>
+        <div class="filter-content">
+            <div class="filter-section">
+                <label class="filter-label">Chế độ</label>
+                <div class="filter-options">
+                    <label class="filter-option">
+                        <input type="radio" name="mode" value="all" checked>
+                        <span class="custom-radio"></span>
+                        Tất cả
+                    </label>
+                    <label class="filter-option">
+                        <input type="radio" name="mode" value="self-drive">
+                        <span class="custom-radio"></span>
+                        Tự lái
+                    </label>
+                    <label class="filter-option">
+                        <input type="radio" name="mode" value="with-driver">
+                        <span class="custom-radio"></span>
+                        Có tài
+                    </label>
+                </div>
+            </div>
+            <div class="filter-section">
+                <label for="tripType" class="filter-label">Loại chuyến</label>
+                <select id="tripType" class="filter-select">
+                    <option value="all">Tất cả</option>
+                    <option value="rent-trip">Chuyến thuê</option>
+                    <option value="lease-trip">Chuyến cho thuê</option>
+                </select>
+            </div>
+            <div class="filter-section">
+                <label for="status" class="filter-label">Trạng thái</label>
+                <select id="status" class="filter-select">
+                    <option value="all">Tất cả</option>
+                    <option value="pending-approval">Chờ duyệt</option>
+                    <option value="pending-deposit">Chờ đặt cọc</option>
+                    <option value="deposit-made">Đã đặt cọc</option>
+                    <option value="renting">Đang thuê</option>
+                    <option value="completed">Đã kết thúc</option>
+                </select>
+            </div>
+        </div>
+        <div class="filter-footer">
+            <button class="reset-btn">Xóa bộ lọc</button>
+            <button class="apply-btn">Áp dụng</button>
+        </div>
+    </div>
+    
+</div>
