@@ -6,8 +6,8 @@
             <div class="col-md-4">
                 <h4>Xin chào bạn!</h4>
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <button type="button" routerLink="/account/infor">
+                    <div class="contact-item" [ngClass]="{'active-item': selectIndex == 0}">
+                        <button type="button" routerLink="/account/infor" (click)="onSelected(0)">
                             <fa-icon [icon]="faUser" ></fa-icon>
                             <p>Tài khoản của tôi</p>
                         </button>
@@ -16,14 +16,14 @@
                         <fa-icon [icon]="faHeart"></fa-icon>
                         <p>Xe yêu thích</p>
                     </div> -->
-                    <div class="contact-item">
-                        <button type="button" routerLink="/account/cars">
+                    <div class="contact-item" [ngClass]="{'active-item': selectIndex == 1}">
+                        <button type="button" routerLink="/account/cars" (click)="onSelected(1)">
                             <fa-icon [icon]="faCar"></fa-icon>
                             <p>Xe của tôi</p>
                         </button>
                     </div>
-                    <div class="contact-item">
-                        <button type="button" routerLink="/account/trips">
+                    <div class="contact-item" [ngClass]="{'active-item': selectIndex == 2}">
+                        <button type="button" routerLink="/account/trips" (click)="onSelected(2)">
                             <fa-icon [icon]="faMapLocationDot"></fa-icon>
                             <p>Chuyến của tôi</p>
                         </button>
@@ -40,8 +40,8 @@
                         <fa-icon [icon]="faClipboard"></fa-icon>
                         <p>Địa chỉ của tôi</p>
                     </div> -->
-                    <div class="contact-item">
-                        <button type="button" routerLink="/account/resetpw">
+                    <div class="contact-item" [ngClass]="{'active-item': selectIndex == 3}">
+                        <button type="button" routerLink="/account/resetpw" (click)="onSelected(3)">
                             <fa-icon [icon]="faLock"></fa-icon>
                             <p>Đổi mật khẩu</p>
                         </button>

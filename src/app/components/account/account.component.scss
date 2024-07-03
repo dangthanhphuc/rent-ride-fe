@@ -125,6 +125,8 @@
     padding-top: 10px;
     border-top: 1px solid #ddd;
     gap: 8px;
+    margin: 0;
+    padding: 8px;
 }
 
 .contact-item button {
@@ -147,4 +149,12 @@
     font-weight: 500;
     color: #666;
     margin-top: 10px;
+}
+
+.active-item {
+    border-left: 4px solid #5fcf86;
+}
+
+.contact-item>button {
+    margin-left: 8px;
 }
