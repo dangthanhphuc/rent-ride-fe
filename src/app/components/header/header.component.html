@@ -24,7 +24,7 @@
             <button type="button" class="btn" style="padding: 12px 16px; font-size: 14px; font-weight: 700;" data-bs-toggle="modal" data-bs-target="#registerModal">Đăng ký</button>
             <button type="button" class="btn btn-signin" style="padding: 12px 16px; font-size: 14px;font-weight: 700;" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</button> } @else {
             <div class="dropdown-profile">
-                <a href="" class="dropdown-profile">
+                <a class="dropdown-profile" routerLink="/account/infor">
                     <div class="avatar ">
                         <img src="https://variety.com/wp-content/uploads/2021/04/Avatar.jpg?w=800&h=533&crop=1" alt="">
                     </div>
@@ -41,16 +41,53 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="loginModalLabel">loginModal</h1>
+                <h1 class="modal-title fs-5" id="loginModalLabel">Đăng nhập</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="modal-input-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Tên đăng nhập</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="text" name="" placeholder="" value="" class="custom-input-text" formControlName="username">
+                                </div>
+                                @if (loginForm.get('username')?.errors && loginForm.get('username')?.touched) { @if (loginForm.get('username')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập tên đăng nhập
+                                </div>
+                                } }
+                            </div>
+                        </div>
+                        <div class="line-form">
+                            <div class="custom-input">
+                                <div class="wrap-info">
+                                    <div class="title-status">
+                                        <p>Mật khẩu</p>
+                                    </div>
+                                </div>
+                                <div class="wrap-input">
+                                    <input type="password" name="" placeholder="" value="" class="custom-input-text" formControlName="password">
+                                </div>
+                                @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) { @if (loginForm.get('password')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập mật khẩu
+                                </div>
+                                } }
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn__s" data-bs-dismiss="modal">Đăng nhập</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -75,6 +112,11 @@
                                 <div class="wrap-input">
                                     <input type="text" name="ip_phone" class="custom-input-text" formControlName="name">
                                 </div>
+                                @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) { @if (registerForm.get('name')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập tên
+                                </div>
+                                } }
                             </div>
                         </div>
                         <div class="line-form">
@@ -87,6 +129,11 @@
                                 <div class="wrap-input">
                                     <input type="text" name="" class="custom-input-text" formControlName="phone_number">
                                 </div>
+                                @if (registerForm.get('phone_number')?.errors && registerForm.get('phone_number')?.touched) { @if (registerForm.get('phone_number')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập số điện thoại
+                                </div>
+                                } }
                             </div>
                         </div>
                         <div class="line-form">
@@ -99,6 +146,15 @@
                                 <div class="wrap-input">
                                     <input type="text" name="" placeholder="" value="" class="custom-input-text" formControlName="email">
                                 </div>
+                                @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) { @if (registerForm.get('email')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập email
+                                </div>
+                                } @if (registerForm.get('email')?.hasError('email')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập đúng email
+                                </div>
+                                } }
                             </div>
                         </div>
                         <div class="line-form">
@@ -111,6 +167,11 @@
                                 <div class="wrap-input">
                                     <input type="date" name="" placeholder="" value="" class="custom-input-text" formControlName="date_of_birth">
                                 </div>
+                                @if (registerForm.get('date_of_birth')?.errors && registerForm.get('date_of_birth')?.touched) { @if (registerForm.get('date_of_birth')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng chọn ngày sinh
+                                </div>
+                                } }
                             </div>
                         </div>
                         <div class="line-form">
@@ -123,6 +184,11 @@
                                 <div class="wrap-input">
                                     <input type="text" name="" placeholder="" value="" class="custom-input-text" formControlName="username">
                                 </div>
+                                @if (registerForm.get('username')?.errors && registerForm.get('username')?.touched) { @if (registerForm.get('username')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập tên đăng nhập
+                                </div>
+                                } }
                             </div>
                         </div>
                         <div class="line-form">
@@ -135,6 +201,11 @@
                                 <div class="wrap-input">
                                     <input type="password" name="" placeholder="" value="" class="custom-input-text" formControlName="password">
                                 </div>
+                                @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) { @if (registerForm.get('password')?.hasError('required')) {
+                                <div class="text-danger">
+                                    Vui lòng nhập mật khẩu
+                                </div>
+                                } }
                             </div>
                         </div>
                         <div class="line-form">

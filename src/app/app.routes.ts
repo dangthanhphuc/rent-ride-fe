@@ -8,6 +8,7 @@ import { TripsComponent } from './components/account/trips/trips.component';
 import { AddressComponent } from './components/account/address/address.component';
 import { CarsComponent } from './components/account/cars/cars.component';
 import { FavsComponent } from './components/account/favs/favs.component';
+import { InforComponent } from './components/account/infor/infor.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -16,10 +17,11 @@ export const routes: Routes = [
 
     {path: "account", component: AccountComponent, children: [
         {path: "resetpw" , component: ResetpwComponent},
-        {path: "trip", component: TripsComponent},
+        {path: "trips", component: TripsComponent},
         {path: "address", component: AddressComponent},
         {path: "cars", component: CarsComponent},
         {path: "favs", component: FavsComponent},
+        {path: "infor", component: InforComponent},
     ]},
     {path: "filter", component : FilterComponent},
 
