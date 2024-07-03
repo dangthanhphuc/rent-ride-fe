@@ -30,6 +30,8 @@ import { BrandService } from '../../services/brand.service';
 import { BrandResponse } from '../../responses/brand.response';
 import { CategoryService } from '../../services/category.service';
 import { CategoryResponse } from '../../responses/category.response';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
     selector: 'app-filter',
@@ -50,7 +52,8 @@ import { CategoryResponse } from '../../responses/category.response';
         MatIconModule,
         CarItemComponent,
         FontAwesomeModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ]
 })
 export class FilterComponent implements OnInit{
@@ -109,7 +112,8 @@ export class FilterComponent implements OnInit{
         private utilityService : UtilityService,
         private rateService : RateService,
         private brandService : BrandService,
-        private categoryService : CategoryService
+        private categoryService : CategoryService,
+        private router : Router
     ) {
       
     }
