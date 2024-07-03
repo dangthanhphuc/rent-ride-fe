@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 import { ResponseObject } from '../responses/api.response';
 import { RegisterDTO } from '../dtos/register.dto';
 import { LoginDTO } from '../dtos/login.dto';
+import { UpdatePassDTO } from '../dtos/update.pass';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class UserService {
       catchError(this.handleError)
     )
 
+  resetPass$ = (id : number, updatePassDTO : UpdatePassDTO) : Observable<ResponseObject> => 
+    this.http.put<ResponseObject>(`${this.apiBaseUrl}/resetPass/${id}`, updatePassDTO).pipe(
+      catchError(this.handleError)
+    )
 
   handleError(error : HttpErrorResponse) : Observable<never> {
     console.log(error);

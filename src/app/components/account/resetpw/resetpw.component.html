@@ -9,41 +9,61 @@
         </div>
         <div class="content">
             <div class="custom-input">
-                <div class="wrap-info">
-                    <div class="title-status mt-3">
-                        <p>Mật khẩu hiện tại</p>
+                <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
+                    <div class="wrap-info">
+                        <div class="title-status mt-3">
+                            <p>Mật khẩu hiện tại</p>
+                        </div>
+
+                        <div class="desc"></div>
                     </div>
-                    <div class="desc"></div>
-                </div>
-                <div class="wrap-input">
-                    <div class="wrap-text">
-                        <input class="rounded-2 border-1" type="password" name="ip_pw" placeholder="" value="">
+                    <div class="wrap-input">
+                        <div class="wrap-text">
+                            <input class="rounded-2 border-1" type="password" name="ip_pw" placeholder="" formControlName="oldPass">
+                        </div>
+                        @if (resetPasswordForm.get('oldPass')?.errors && resetPasswordForm.get('oldPass')?.touched) { @if (resetPasswordForm.get('oldPass')?.hasError('required')) {
+                        <div class="text-danger">
+                            Vui lòng nhập mật khẩu
+                        </div>
+                        } }
                     </div>
-                </div>
-                <div class="wrap-info">
-                    <div class="title-status">
-                        <p>Mật khẩu mới</p>
+                    <div class="wrap-info mt-4">
+                        <div class="title-status">
+                            <p>Mật khẩu mới</p>
+                        </div>
+
                     </div>
-                </div>
-                <div class="wrap-input">
-                    <div class="wrap-text">
-                        <input class="rounded-2 border-1"  type="password" name="ip_reset_pw" placeholder="" value="">
+                    <div class="wrap-input">
+                        <div class="wrap-text">
+                            <input class="rounded-2 border-1" type="password" name="ip_reset_pw" placeholder="" formControlName="newPass">
+                        </div>
+                        @if (resetPasswordForm.get('newPass')?.errors && resetPasswordForm.get('newPass')?.touched) { @if (resetPasswordForm.get('newPass')?.hasError('required')) {
+                        <div class="text-danger">
+                            Vui lòng nhập mật khẩu mới
+                        </div>
+                        } }
                     </div>
-                </div>
-                <div class="wrap-info">
-                    <div class="title-status">
-                        <p>Xác nhận mật khẩu mới</p>
+                    <div class="wrap-info  mt-4">
+                        <div class="title-status">
+                            <p>Xác nhận mật khẩu mới</p>
+                        </div>
+                        <div class="desc"></div>
                     </div>
-                    <div class="desc"></div>
-                </div>
-                <div class="wrap-input">
-                    <div class="wrap-text">
-                        <input class="rounded-2 border-1" type="password" name="ip_reset_pw_confirm" placeholder="" value="">
+                    <div class="wrap-input">
+                        <div class="wrap-text">
+                            <input class="rounded-2 border-1" type="password" name="ip_reset_pw_confirm" placeholder="" formControlName="retypePass">
+                        </div>
+                        @if (resetPasswordForm.get('retypePass')?.errors && resetPasswordForm.get('retypePass')?.touched) { @if (resetPasswordForm.errors && resetPasswordForm.errors['mismatch'] && resetPasswordForm.get('retypePass')?.touched) {
+                        <div class="text-danger">
+                            Xác nhận mật khẩu chưa đúng
+                        </div>
+                        } }
                     </div>
-                </div>
-                <div class="apply-button">
-                    <a href="#" class="btn btn-lg btn-secondary" disabled>Xác nhận</a>
-                </div>
+                    <div class="apply-button">
+                        <button type="submit" class="btn btn-lg btn-secondary" [disabled]="resetPasswordForm.invalid">Xác nhận</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
