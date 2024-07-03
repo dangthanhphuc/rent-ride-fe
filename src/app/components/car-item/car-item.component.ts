@@ -2,8 +2,8 @@ import { Component, OnInit, input } from '@angular/core';
 import { CarResponse } from '../../responses/car.response';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {faStar, faSuitcaseRolling, faLocationDot, faWallet, faBolt} from '@fortawesome/free-solid-svg-icons';
-import {faHeart} from '@fortawesome/free-regular-svg-icons';;
+import { faStar, faSuitcaseRolling, faLocationDot, faWallet, faBolt } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';;
 
 import { Gearbox } from '../../enums/grearbox.enum';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ import { CarImageResponse } from '../../responses/car.image.response';
   templateUrl: './car-item.component.html',
   styleUrl: './car-item.component.scss'
 })
-export class CarItemComponent implements OnInit{
+export class CarItemComponent implements OnInit {
   faStar = faStar;
   faSuitcaseRolling = faSuitcaseRolling;
   faLocationDot = faLocationDot;
@@ -33,8 +33,8 @@ export class CarItemComponent implements OnInit{
   carImages!: CarImageResponse[];
 
   constructor(
-    private carImageService : CarImageService
-  ){
+    private carImageService: CarImageService
+  ) {
   }
 
   ngOnInit(): void {
@@ -75,12 +75,12 @@ export class CarItemComponent implements OnInit{
     }
   }
 
-  getImageFromCar(id : number) {
+  getImageFromCar(id: number) {
     this.carImageService.getImageFromCar$(id).subscribe({
-      next: (response : ResponseObject) => {
+      next: (response: ResponseObject) => {
         this.carImages = response.data;
       },
-      error: (error : any) => {
+      error: (error: any) => {
         console.log(error);
       }
     })

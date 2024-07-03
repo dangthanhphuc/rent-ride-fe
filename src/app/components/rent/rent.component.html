@@ -1,3 +1,45 @@
 <app-header></app-header>
-<p>rent works!</p>
+<div class="container mt-2 mb-2 border bg-white rounded">
+    <div class="d-flex justify-content-center mt-2 ">
+        <h3 class="fw-bold">Xác nhận đặt xe</h3>
+    </div>
+    <div class="border-bottom h5 fw-bold">
+        {{car.model.name}}
+    </div>
+    <div class="row mt-3 ">
+        <div class="col-md-4"><img class="w-100" [src]="carImages[0].url" alt=""></div>
+        <div class="col-md-8">
+            <div class="h6 fw-bold">Thời gian cho thuê xe</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Bắt đầu: </p>
+                </div>
+                <div class="col-md-6">
+                    <p>Kết thúc: </p>
+                </div>
+            </div>
+            <div class="mt-5">
+                <p class="h6 fw-bold">Bảo hiểm</p>
+            </div>
+        </div> 
+    </div>
+    <div class="row mt-3" >
+        <div class="col-md-4">
+            <img class="img-user" src="/assets/images/empty-trip.png" alt="">        
+        </div>
+        <div class="col-md-8">
+            <div class="">
+                <p class="h6 fw-bold">Số điện thoại</p>
+                <p class="phone-number">...</p>
+                <p>Lưu ý: ....  </p>
+            </div>          
+        </div>
+    </div>  
+    <div>
+        <div class="mt-2">
+            <p class="h5 fw-bold">Giới hạn số km</p>
+            <p class="">Tối đa<strong></strong></p>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>
