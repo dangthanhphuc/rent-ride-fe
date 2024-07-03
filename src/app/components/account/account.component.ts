@@ -6,14 +6,16 @@ import {faUpload,faRightFromBracket,faPenToSquare,faUser,faHeart,faCar,faCartSho
 import { Router, RouterModule } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-account',
   standalone: true,
   imports: [
-  FontAwesomeModule,
+   FontAwesomeModule,
     HeaderComponent,
     FooterComponent,
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
@@ -33,6 +35,8 @@ export class AccountComponent {
   faRightFromBracket = faRightFromBracket;
   faUpload = faUpload;
 
+
+  selectIndex = 0;
   constructor(
     private tokenService : TokenService,
     private localStorageService : LocalStorageService,
@@ -43,6 +47,11 @@ export class AccountComponent {
     this.tokenService.removeToken();
     this.localStorageService.removeValueFromLocalStorage("user");
     this.router.navigate(['/homepage']);
+  }
+
+
+  onSelected(index : number) {
+    this.selectIndex = index;
   }
 
 }
