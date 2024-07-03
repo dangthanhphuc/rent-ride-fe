@@ -9,6 +9,7 @@ import { AddressComponent } from './components/account/address/address.component
 import { CarsComponent } from './components/account/cars/cars.component';
 import { FavsComponent } from './components/account/favs/favs.component';
 import { InforComponent } from './components/account/infor/infor.component';
+import { RentComponent } from './components/rent/rent.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -24,6 +25,7 @@ export const routes: Routes = [
         {path: "infor", component: InforComponent},
     ]},
     {path: "filter", component : FilterComponent},
+    {path: "rent/:id", component: RentComponent },
 
     {path: "**", component: PageNotFoundComponent}
 ];

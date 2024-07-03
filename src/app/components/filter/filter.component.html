@@ -298,10 +298,10 @@
                                     <p class="cost"><span>{{formatPrice(selectedCar?.price)}}đ</span></p>
                                 </div>
                             </div>
-                            <button class="btn btn-success w-100 btn--m" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button class="btn btn-success w-100 btn--m" type="button" data-bs-dismiss="modal" [routerLink]="['/rent', selectedCar?.id]">
                               <fa-icon [icon]="faBoltLightning"></fa-icon>
                                 Chọn thuê
-                            </button>                           
+                            </button>
                         </div>
                         <div class="surcharge">
                             <p class="title text-primary">Phụ phí có thể phát sinh</p>

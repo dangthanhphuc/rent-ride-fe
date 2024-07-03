@@ -23,6 +23,10 @@ export class CarService {
       catchError(this.handleError)
     );
   
+  getCar$ = (carId : number) : Observable<ResponseObject> => 
+    this.http.get<ResponseObject>(`${this.apiBaseUrl}/${carId}`).pipe(
+      catchError(this.handleError)
+    );
   
 
   handleError(error : HttpErrorResponse) : Observable<never> {

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { CarResponse } from '../../responses/car.response';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -7,6 +7,9 @@ import {faHeart} from '@fortawesome/free-regular-svg-icons';;
 
 import { Gearbox } from '../../enums/grearbox.enum';
 import { CommonModule } from '@angular/common';
+import { CarImageService } from '../../services/car.image.service';
+import { ResponseObject } from '../../responses/api.response';
+import { CarImageResponse } from '../../responses/car.image.response';
 
 @Component({
   selector: 'app-car-item',
@@ -18,7 +21,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './car-item.component.html',
   styleUrl: './car-item.component.scss'
 })
-export class CarItemComponent {
+export class CarItemComponent implements OnInit{
   faStar = faStar;
   faSuitcaseRolling = faSuitcaseRolling;
   faLocationDot = faLocationDot;
@@ -27,8 +30,18 @@ export class CarItemComponent {
   faBolt = faBolt;
 
   car = input.required<CarResponse>();
+  carImages!: CarImageResponse[];
 
-  constructor(){}
+  constructor(
+    private carImageService : CarImageService
+  ){
+  }
+
+  ngOnInit(): void {
+    debugger
+    this.getImageFromCar(this.car().id);
+    debugger
+  }
 
   getBackgroundColor(gearbox: Gearbox): string {
     switch (gearbox) {
@@ -64,5 +77,15 @@ export class CarItemComponent {
     }
   }
 
+  getImageFromCar(id : number) {
+    this.carImageService.getImageFromCar$(id).subscribe({
+      next: (response : ResponseObject) => {
+        this.carImages = response.data;
+      },
+      error: (error : any) => {
+        console.log(error);
+      }
+    })
+  }
 
 }
