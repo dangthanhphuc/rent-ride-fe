@@ -1,13 +1,29 @@
-<div class="title">
-    <div class="title-edit">
-        <h5>Thông tin tài khoản</h5>
-        <fa-icon [icon]="faPenToSquare"></fa-icon>
-    </div>
-    <div class="total-trips">
-        <p class="count">0</p><span>chuyến</span>
-    </div>
+<div class="content-account w-100">
+    <div class="content-item user-profile">
+        <div class="title">
+            <div class="title-edit">
+                <h5 class="mb-0">Thông tin tài khoản</h5>
+                <fa-icon [icon]="faPenToSquare"></fa-icon>
+            </div>
+            <div class="total-trips">
+                <p class="count">0</p><span>chuyến</span>
+            </div>
 
+        </div>
+        <div class="content">
+            <div class="avatar-box">
+                <div class="avatar avatar--xl has-edit">
+                    <img loading="lazy" [src]="userResponse.img_url" alt="Phúc Đặngg">
+                </div>
+            </div>
+            <div class="info-user">
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <div class="user-profile">
     <div class="user-avatar">
         <img src="assets/images/Hinhyeu.jpg" alt="Logo" class="avatar" width="50" height="50">

@@ -10,6 +10,7 @@ import { CarsComponent } from './components/account/cars/cars.component';
 import { FavsComponent } from './components/account/favs/favs.component';
 import { InforComponent } from './components/account/infor/infor.component';
 import { RentComponent } from './components/rent/rent.component';
+import { UserGuard, UserGuardFn } from './guards/user.guard';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -23,9 +24,9 @@ export const routes: Routes = [
         {path: "cars", component: CarsComponent},
         {path: "favs", component: FavsComponent},
         {path: "infor", component: InforComponent},
-    ]},
+    ], canActivate: [UserGuardFn]},
     {path: "filter", component : FilterComponent},
-    {path: "rent/:id", component: RentComponent },
+    {path: "rent/:id", component: RentComponent, canActivate: [UserGuardFn]},
 
     {path: "**", component: PageNotFoundComponent}
 ];

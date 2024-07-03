@@ -1,25 +1,7 @@
 <div class="card p-3" style="width: 100%;">
     <div class="section-image">
-        @if (carImages.length > 0) {
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                @for (carImage of carImages; track $index) {
-                <div class="carousel-item active">
-                    <img [src]="carImage.url" class="card-img-top img-custom d-block" alt="...">
-                </div>
-                }
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-        </div>
-        }
-
+        @if(carImages && carImages.length > 0){
+        <img [src]="carImages[0].url" class="card-img-top img-custom" alt="..."> }
         <div class="avatar avatar-s">
             <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="" class="w-100 h-100 avatar-image">
         </div>
