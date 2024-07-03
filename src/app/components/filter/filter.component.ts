@@ -31,6 +31,8 @@ import { BrandResponse } from '../../responses/brand.response';
 import { CategoryService } from '../../services/category.service';
 import { CategoryResponse } from '../../responses/category.response';
 import { Router, RouterModule } from '@angular/router';
+import { CarImageService } from '../../services/car.image.service';
+import { CarImageResponse } from '../../responses/car.image.response';
 
 
 @Component({
@@ -93,6 +95,7 @@ export class FilterComponent implements OnInit{
     filterCars!: CarResponse[];
     selectedCar?: CarResponse;
     ratesByCarSelected : RateResponse[] = [];
+    carImagesByCarSelected : CarImageResponse[] = [];
 
     carFilter : CarFilter = 
     {
@@ -111,6 +114,7 @@ export class FilterComponent implements OnInit{
         private carService : CarService,
         private utilityService : UtilityService,
         private rateService : RateService,
+        private carImageService : CarImageService,
         private brandService : BrandService,
         private categoryService : CategoryService,
         private router : Router
@@ -193,6 +197,7 @@ export class FilterComponent implements OnInit{
     onSelectedCar(car : CarResponse) {
         this.selectedCar = car;
         this.getRatesByCarId(car.id);
+        this.getImageFromCar(car.id);
     }
     
     inView(elementId: string): void {
@@ -419,7 +424,16 @@ export class FilterComponent implements OnInit{
         });
       }
 
-      
+      getImageFromCar(id : number) {
+        this.carImageService.getImageFromCar$(id).subscribe({
+          next: (response : ResponseObject) => {
+            this.carImagesByCarSelected = response.data;
+          },
+          error: (error : any) => {
+            console.log(error);
+          }
+        })
+      }
 }
 
 

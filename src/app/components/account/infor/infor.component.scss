@@ -148,3 +148,91 @@
     color: #666;
     margin-top: 10px;
 }
+
+.content-account {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 24px;
+    gap: 24px;
+    width: calc(70% - 20px);
+}
+
+.content-account .content-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 32px;
+}
+
+.content-account .user-profile {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 24px;
+    gap: 24px;
+}
+
+.content-account .user-profile .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 8px;
+    gap: 8px;
+    width: 100%;
+}
+
+.content-account .user-profile .title-edit {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+    gap: 8px;
+}
+
+.content-account .user-profile .title .total-trips {
+    display: flex;
+    align-items: baseline;
+    padding: 8px 16px;
+    grid-gap: 4px;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.content-account .user-profile .content {
+    display: flex;
+    grid-gap: 36px;
+    gap: 36px;
+}
+
+.content-account .user-profile .content .avatar-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    width: 30%;
+}
+
+.content-account .user-profile .content .info-user {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    grid-gap: 24px;
+    gap: 24px;
+}
+
+.avatar,
+.avatar-img,
+.avatar img,
+.borderRadius-circle {
+    border-radius: 100%;
+}
+
+.avatar {
+    position: relative;
+    border: 1px solid #e0e0e0;
+}
+
+.avatar--xl {
+    width: 148px;
+    height: 148px;
+    line-height: 148px;
+}

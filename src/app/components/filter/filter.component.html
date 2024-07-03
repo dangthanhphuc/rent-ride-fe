@@ -203,13 +203,17 @@
           <div class="car-container" style="height: 500px;">
 
             <div class="main-img">
-              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+              @if(carImagesByCarSelected && carImagesByCarSelected.length > 0){
+                <img [src]="carImagesByCarSelected[0].url" alt="">
+              }
             </div>
 
             <div class="sub-img">
-              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
-              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
-              <img src="http://localhost:8080/images/car_images/30623266-3e8b-44bb-b4e6-38d8220219d3_pexels-eberhard-grossgasteiger-1366919.jpg" alt="">
+              @if(carImagesByCarSelected && carImagesByCarSelected.length > 0){
+                <img [src]="carImagesByCarSelected[1].url" alt="">
+                <img [src]="carImagesByCarSelected[2].url" alt="">
+                <img [src]="carImagesByCarSelected[3].url" alt="">
+              }
             </div>
           </div>
         </div> 
