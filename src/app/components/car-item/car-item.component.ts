@@ -38,9 +38,7 @@ export class CarItemComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    debugger
     this.getImageFromCar(this.car().id);
-    debugger
   }
 
   getBackgroundColor(gearbox: Gearbox): string {

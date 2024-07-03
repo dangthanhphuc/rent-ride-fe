@@ -90,6 +90,7 @@ export class HeaderComponent {
         this.tokenService.setToken(response.data.token);
         this.localStorageService.saveValueToLocalStorage("user", response.data.user_detail);
         this.userResponse = response.data.user_detail;
+        debugger
       },
       error: (error : any) => {
         console.log(error);
