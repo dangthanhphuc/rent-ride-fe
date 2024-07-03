@@ -4,6 +4,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AccountComponent } from './components/account/account.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { ResetpwComponent } from './components/account/resetpw/resetpw.component';
+import { TripsComponent } from './components/account/trips/trips.component';
+import { AddressComponent } from './components/account/address/address.component';
+import { CarsComponent } from './components/account/cars/cars.component';
+import { FavsComponent } from './components/account/favs/favs.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -11,7 +15,11 @@ export const routes: Routes = [
     {path: "homepage", component: HomepageComponent},
 
     {path: "account", component: AccountComponent, children: [
-        {path: "resetpw" , component: ResetpwComponent}
+        {path: "resetpw" , component: ResetpwComponent},
+        {path: "trip", component: TripsComponent},
+        {path: "address", component: AddressComponent},
+        {path: "cars", component: CarsComponent},
+        {path: "favs", component: FavsComponent},
     ]},
     {path: "filter", component : FilterComponent},
 
